@@ -232,7 +232,9 @@ func resourceGithubRepositoryCreate(d *schema.ResourceData, meta interface{}) er
 		}
 	} else {
 		// Create without a repository template
-		repo, _, err := client.Repositories.Create(ctx, orgName, repoReq)
+		// repo, _, err := client.Repositories.Create(ctx, orgName, repoReq)
+		// AT 21/01/20 - dirty hack to allow repos against personal github accounts
+		repo, _, err := client.Repositories.Create(ctx, "", repoReq)
 		if err != nil {
 			return err
 		}
